@@ -21,9 +21,16 @@ export default function MyModal({
   onSave,
   isEditing,
 }: Props) {
-  console.log("🚀 ~ MyModal ~ field:", field);
   const [localField, setLocalField] = useState(field);
   const [errors, setErrors] = useState({ label: "" });
+
+  const isOptionField =
+    localField.fieldType === "Dropdown" ||
+    localField.fieldType === "Radio Button";
+  const fieldOptionsTitle =
+    localField.fieldType === "Dropdown"
+      ? "Dropdown Options:"
+      : "Radio Button Options:";
 
   useEffect(() => {
     setLocalField(field);
@@ -55,29 +62,27 @@ export default function MyModal({
       setErrors((prev) => ({ ...prev, label: "Label is required." }));
       return;
     }
-    let error = "";
-    if (localField.fieldType === "Dropdown") {
+    if (isOptionField) {
       if (!localField.options.length) {
-        error = "Please add atleast one dropdown option";
         setErrors((prev) => ({
           ...prev,
-          label: error,
+          label: "Please add at least one option",
         }));
+        return;
       }
-      localField.options.forEach((item) => {
-        if (!item.value || !item.label) {
-          error = "Please enter all option values and labels";
-          return setErrors((prev) => ({
+
+      // Check each option for label and value
+      for (const option of localField.options) {
+        if (!option.label.trim() || !option.value.trim()) {
+          setErrors((prev) => ({
             ...prev,
-            label: error,
+            label: "Please enter all option values and labels",
           }));
+          return;
         }
-      });
+      }
     }
-    if (error) {
-      setErrors((prev) => ({ ...prev, label: error }));
-      return;
-    }
+
     onSave(localField);
     onClose();
   };
@@ -131,9 +136,10 @@ export default function MyModal({
                 {errors.label && (
                   <p className="error text-red-700">{errors.label}</p>
                 )}
-                {localField.fieldType === "Dropdown" && (
+
+                {isOptionField && (
                   <div className="mt-4">
-                    <p>Dropdown Options:</p>
+                    <p>{fieldOptionsTitle}</p>
                     {localField.options.map((option) => (
                       <div key={option.id} className="m-1">
                         <div className="flex gap-1 flex-wrap items-baseline">

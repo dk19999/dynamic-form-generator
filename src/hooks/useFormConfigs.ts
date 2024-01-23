@@ -4,9 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function useFormConfigs() {
   const [configs, setConfigs] = useState<Config[]>([]);
-  console.log("🚀 ~ useFormConfigs ~ configs:", configs)
   const [currentConfig, setCurrentConfig] = useState<Config>();
-  console.log("🚀 ~ useFormConfigs ~ currentConfig:", currentConfig)
 
   const labels = configs.map((item) => ({
     id: item.id,
@@ -21,7 +19,6 @@ export default function useFormConfigs() {
 
   const saveAsConfig = (fields: Field[], label: string) => {
     const config: Config = { fields, id: uuidv4(), label };
-    console.log("🚀 ~ saveAsConfig ~ config:", config)
     setConfigs((state) => [config, ...state]);
   };
 

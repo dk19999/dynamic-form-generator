@@ -54,7 +54,7 @@ const DynamicFormField: React.FC<DynamicFormFieldProps> = ({ field, onChange }) 
       );
     case "Radio Button":
       return (
-        <div>
+        <div className="flex flex-wrap gap-2">
           {field.options.map((option, index) => (
             <label key={index}>
               <input
@@ -62,6 +62,7 @@ const DynamicFormField: React.FC<DynamicFormFieldProps> = ({ field, onChange }) 
                 value={option.value}
                 checked={field.value === option.value}
                 onChange={handleInputChange}
+                className="mx-1"
               />
               {option.label}
             </label>

@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Config, Field } from "../types";
 import { v4 as uuidv4 } from "uuid";
 
 export default function useFormConfigs() {
-  const [configs, setConfigs] = useState<Config[]>([]);
+ const [configs, setConfigs] = useState<Config[]>(() => {
+    // Load configs from localStorage or set to an empty array if not available
+    const savedConfigs = localStorage.getItem("formConfigs");
+    return savedConfigs ? JSON.parse(savedConfigs) : [];
+  });
   const [currentConfig, setCurrentConfig] = useState<Config>();
+
+  useEffect(() => {
+    // Save configs to localStorage whenever they change
+    localStorage.setItem("formConfigs", JSON.stringify(configs));
+  }, [configs]);
 
   const labels = configs.map((item) => ({
     id: item.id,

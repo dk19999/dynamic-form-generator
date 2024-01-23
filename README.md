@@ -21,9 +21,12 @@ Installation
 Clone the repository and install dependencies:
 
 
-`git clone https://your-repository-url.git
-cd dynamic-form-manager
-npm install`
+`git clone https://github.com/dk19999/dynamic-form-generator.git`
+
+`cd dynamic-form-manager`
+
+`npm install`
+
 
 Usage
 -----

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import NewFieldModal from "./modals/new-field-modal";
-import useDynamicForm from "../hooks/useDynamicForm";
+import useDynamicForm from "../hooks/use-dynamic-form";
 import { Field } from "../types";
 import { v4 as uuidv4 } from "uuid";
 import FieldSelector from "./form/field-selector";

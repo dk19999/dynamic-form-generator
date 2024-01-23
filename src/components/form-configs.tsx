@@ -1,5 +1,5 @@
 import Dropdown from "./form/dropdown";
-import useFormConfigs from "../hooks/useFormConfigs";
+import useFormConfigs from "../hooks/use-form-configs";
 import Button from "./button";
 import { useState } from "react";
 import { Field } from "../types";
@@ -49,7 +49,7 @@ function FormConfigs({
 
   return (
     <>
-      <div className="flex gap-1">
+      <div className="flex flex-col md:flex-row gap-1">
         <Dropdown
           className="flex-1"
           onChange={onChange}
@@ -66,6 +66,7 @@ function FormConfigs({
             <Button
               onClick={() => setShowConfigLabel(true)}
               buttonType="secondary"
+              className="flex-1 w-full"
             >
               Save current fields as a config
             </Button>

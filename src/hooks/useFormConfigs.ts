@@ -6,6 +6,7 @@ export default function useFormConfigs() {
   const [configs, setConfigs] = useState<Config[]>([]);
   console.log("🚀 ~ useFormConfigs ~ configs:", configs)
   const [currentConfig, setCurrentConfig] = useState<Config>();
+  console.log("🚀 ~ useFormConfigs ~ currentConfig:", currentConfig)
 
   const labels = configs.map((item) => ({
     id: item.id,

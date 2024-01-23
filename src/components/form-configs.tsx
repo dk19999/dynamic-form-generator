@@ -14,8 +14,8 @@ function FormConfigs({
   fields: Field[];
 }) {
   const { setConfig, currentConfig, saveAsConfig, configs, labels } =
-    useFormConfigs();
-
+  useFormConfigs();
+  
   const [errorMessage, setErrorMessage] = useState("");
   const [showConfigLabel, setShowConfigLabel] = useState(false);
   const [configLabel, setConfigLabel] = useState("");
@@ -41,11 +41,10 @@ function FormConfigs({
     } else {
       setErrorMessage("");
     }
-    if (fields) {
-      saveAsConfig(fields, configLabel);
+      saveAsConfig(fields??[], configLabel);
       setShowConfigLabel(false);
+      setConfigLabel('')
       toast('Config saved successfully')
-    }
   };
 
   return (
@@ -54,9 +53,10 @@ function FormConfigs({
         <Dropdown
           className="flex-1"
           onChange={onChange}
+          key={currentConfig?.label}
           options={labels}
           placeholder="Select a config"
-          value={currentConfig?.label ?? ""}
+          value={currentConfig?.id ?? ""}
         />
         <Button buttonType="primary" onClick={loadConfig}>
           Load Selected Config

@@ -20,7 +20,6 @@ Installation
 
 Clone the repository and install dependencies:
 
-bashCopy code
 
 `git clone https://your-repository-url.git
 cd dynamic-form-manager
@@ -30,8 +29,6 @@ Usage
 -----
 
 Start the application:
-
-bashCopy code
 
 `npm start`
 

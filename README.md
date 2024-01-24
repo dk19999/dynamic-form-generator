@@ -4,7 +4,7 @@ Dynamic Form Manager
 Description
 -----------
 
-This React-based application handles dynamic forms with various field types including text inputs, text areas, dropdowns, checkboxes, and radio buttons. It features custom hooks for state management and modularity.
+This React-based application handles dynamic forms with various field types including text inputs, text areas, dropdowns, checkboxes, and radio buttons. It features custom hooks for state management and modularity. We can save our form config which gets stored in localStorage as JSON for persisting our configs.
 
 Features
 --------
